@@ -95,9 +95,55 @@ class SortingRobot:
     def sort(self):
         """
         Sort the robot's list.
+
+        Due to not being able to use variables and limited memory, we need to use in-place sort
+        We can only move left and right here, so an iterative sort is the most logical
+
+        we will use lights to check if any work was done in a pass through
+
+
+
         """
         # Fill this out
-        pass
+        self.set_light_on()
+        while self.light_is_on():
+            self.set_light_off() # a swap will turn the light back on, so we know the list isnt sorted yet
+            self.swap_item()
+            self.move_right()
+
+            while self.can_move_right() == True: # comb all the way to the right side of the list
+                if self.compare_item() == 1:
+                    self.swap_item()
+                    self.set_light_on()
+
+
+            while self.light_is_on == True and self.can_move_left() == True: # comb all the way to the left side of the list
+                self.move_left()
+
+
+        # self.set_light_on()
+        # while self.light_is_on():
+        #     self.set_light_off() # a swap will turn the light back on, so we know the list isnt sorted yet
+
+        #     self.swap_item()
+        #     self.move_right()
+
+        #     while self.can_move_right(): # comb all the way to the right side of the list
+        #         if self.compare_item() == -1:
+        #             self.swap_item()
+        #         self.move_right()
+
+        #     self.swap_item() # swap the biggest item to the max unsorted position
+
+        #     while self.can_move_left(): # comb all the way to the left side of the list
+        #         self.move_left()
+        #         if self.compare_item() == 1:
+        #             self.swap_item()
+        #             self.set_light_on()
+
+
+
+
 
 
 if __name__ == "__main__":
