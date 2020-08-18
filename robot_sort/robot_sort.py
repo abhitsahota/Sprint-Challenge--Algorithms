@@ -104,23 +104,79 @@ class SortingRobot:
 
 
         """
-        # Fill this out
-        self.set_light_on()
-        while self.light_is_on():
-            self.set_light_off() # a swap will turn the light back on, so we know the list isnt sorted yet
-            self.swap_item()
-            self.move_right()
 
-            while self.can_move_right() == True: # comb all the way to the right side of the list
+        while not self.light_is_on():
+            self.set_light_on()
+
+            while self.can_move_right():
+                self.swap_item()
+                self.move_right()
+
                 if self.compare_item() == 1:
                     self.swap_item()
-                    self.set_light_on()
+                    self.move_left()
+                    self.swap_item()
+                    self.move_right()
+                    self.set_light_off()
+                else:
+                    self.move_left()
+                    self.swap_item()
+                    self.move_right()
+
+            if not self.light_is_on():
+                while self.can_move_left():
+                    self.move_left()
 
 
-            while self.light_is_on == True and self.can_move_left() == True: # comb all the way to the left side of the list
-                self.move_left()
 
 
+
+        # breaks rule 
+
+        # for pos in range(len(self._list)):
+        #     while self.move_right():
+        #         if self.compare_item() == -1 or not self.compare_item():
+        #             self.swap_item()
+        #         self.move_right()
+
+        #     if self.compare_item() == 1 or not self.compare_item():
+        #         self.swap_item()
+
+        #     while self.can_move_left():
+        #         self.move_left()
+
+        #     self.swap_item()
+
+
+        # self.set_light_on()
+        # # Fill this out
+        # while self.light_is_on():
+        #     self.set_light_off() # a swap will turn the light back on, so we know the list isnt sorted yet
+
+        #     while self.can_move_right() == True: # comb all the way to the right side of the list
+        #         self.swap_item()
+        #         self.move_right()
+        #         if self.compare_item() == -1 or not self.compare_item():
+        #             self.swap_item()
+        #             self.set_light_on()
+        #         self.move_left()
+        #         self.swap_item()
+        #         self.move_right()
+            
+        #     if self.compare_item() == 1 or not self.compare_item():
+        #         self.swap_item()
+        #         self.move_left()
+        #         if self.compare_item() == -1:
+        #             self.swap_item()
+        #             self.set_light_on()
+        #         self.move_right()
+        #         self.swap_item()
+        #         self.move_left()
+
+        # return self._list
+
+            # while self.light_is_on == True and self.can_move_left() == True: # comb all the way to the left side of the list
+            #     self.move_left()
         # self.set_light_on()
         # while self.light_is_on():
         #     self.set_light_off() # a swap will turn the light back on, so we know the list isnt sorted yet
